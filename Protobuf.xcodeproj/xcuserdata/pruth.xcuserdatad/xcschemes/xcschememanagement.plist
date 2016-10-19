@@ -4,25 +4,15 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>libprotobuf-lite.xcscheme_^#shared#^_</key>
+		<key>Protobuf.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0A4CBDD36A344A9D9E746A08</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>69F47ABD9FDD4B918EF5CA6D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>891522582DCC4F4B99A474AE</key>
+		<key>8447CD0F1DB690B1004E6687</key>
 		<dict>
 			<key>primary</key>
 			<true/>
