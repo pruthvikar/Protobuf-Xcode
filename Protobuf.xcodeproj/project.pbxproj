@@ -206,6 +206,11 @@
 		84695DEE1DB69137007BA641 /* wire_format_lite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wire_format_lite.h; sourceTree = "<group>"; };
 		84695DEF1DB69137007BA641 /* wire_format_lite_inl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wire_format_lite_inl.h; sourceTree = "<group>"; };
 		84695DF01DB69137007BA641 /* wrappers.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wrappers.pb.h; sourceTree = "<group>"; };
+		84D0E0CA1F6191FF000D5965 /* arena_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arena_impl.h; sourceTree = "<group>"; };
+		84D0E0CB1F61924B000D5965 /* generated_message_table_driven_lite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = generated_message_table_driven_lite.h; sourceTree = "<group>"; };
+		84D0E0CC1F6192E1000D5965 /* atomicops_internals_generic_c11_atomic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = atomicops_internals_generic_c11_atomic.h; sourceTree = "<group>"; };
+		84D0E0CD1F6192E2000D5965 /* io_win32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = io_win32.h; sourceTree = "<group>"; };
+		84D0E0CE1F619300000D5965 /* delimited_message_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = delimited_message_util.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,6 +295,8 @@
 				84695DC71DB69137007BA641 /* testing */,
 				84695DCE1DB69137007BA641 /* util */,
 				84695D631DB69137007BA641 /* any.h */,
+				84D0E0CB1F61924B000D5965 /* generated_message_table_driven_lite.h */,
+				84D0E0CA1F6191FF000D5965 /* arena_impl.h */,
 				84695D641DB69137007BA641 /* any.pb.h */,
 				84695D651DB69137007BA641 /* api.pb.h */,
 				84695D661DB69137007BA641 /* arena.h */,
@@ -365,6 +372,8 @@
 		84695D961DB69137007BA641 /* stubs */ = {
 			isa = PBXGroup;
 			children = (
+				84D0E0CC1F6192E1000D5965 /* atomicops_internals_generic_c11_atomic.h */,
+				84D0E0CD1F6192E2000D5965 /* io_win32.h */,
 				84695D971DB69137007BA641 /* atomic_sequence_num.h */,
 				84695D981DB69137007BA641 /* atomicops.h */,
 				84695D991DB69137007BA641 /* atomicops_internals_arm64_gcc.h */,
@@ -425,6 +434,7 @@
 		84695DCE1DB69137007BA641 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				84D0E0CE1F619300000D5965 /* delimited_message_util.h */,
 				84695DD11DB69137007BA641 /* internal */,
 				84695DCF1DB69137007BA641 /* field_comparator.h */,
 				84695DD01DB69137007BA641 /* field_mask_util.h */,
