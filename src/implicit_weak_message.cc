@@ -28,72 +28,36 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-// Author: kenton@google.com (Kenton Varda)
-//
-// emulates google3/base/once.h
-//
-// This header is intended to be included only by internal .cc files and
-// generated .pb.cc files.  Users should not use this directly.
+#include <google/protobuf/implicit_weak_message.h>
 
 #include <google/protobuf/stubs/once.h>
-
-#ifndef GOOGLE_PROTOBUF_NO_THREAD_SAFETY
-
-#ifdef _WIN32
-#include <windows.h>
-#else
-#include <sched.h>
-#endif
-
-#include <google/protobuf/stubs/atomicops.h>
+#include <google/protobuf/io/zero_copy_stream_impl_lite.h>
+#include <google/protobuf/wire_format_lite.h>
 
 namespace google {
 namespace protobuf {
+namespace internal {
 
-namespace {
-
-void SchedYield() {
-#ifdef _WIN32
-  Sleep(0);
-#else  // POSIX
-  sched_yield();
-#endif
+bool ImplicitWeakMessage::MergePartialFromCodedStream(io::CodedInputStream* input) {
+  io::StringOutputStream string_stream(&data_);
+  io::CodedOutputStream coded_stream(&string_stream, false);
+  return WireFormatLite::SkipMessage(input, &coded_stream);
 }
 
-}  // namespace
+::google::protobuf::internal::ExplicitlyConstructed<ImplicitWeakMessage>
+    implicit_weak_message_default_instance;
+GOOGLE_PROTOBUF_DECLARE_ONCE(implicit_weak_message_once_init_);
 
-void GoogleOnceInitImpl(ProtobufOnceType* once, Closure* closure) {
-  internal::AtomicWord state = internal::Acquire_Load(once);
-  // Fast path. The provided closure was already executed.
-  if (state == ONCE_STATE_DONE) {
-    return;
-  }
-  // The closure execution did not complete yet. The once object can be in one
-  // of the two following states:
-  //   - UNINITIALIZED: We are the first thread calling this function.
-  //   - EXECUTING_CLOSURE: Another thread is already executing the closure.
-  //
-  // First, try to change the state from UNINITIALIZED to EXECUTING_CLOSURE
-  // atomically.
-  state = internal::Acquire_CompareAndSwap(
-      once, ONCE_STATE_UNINITIALIZED, ONCE_STATE_EXECUTING_CLOSURE);
-  if (state == ONCE_STATE_UNINITIALIZED) {
-    // We are the first thread to call this function, so we have to call the
-    // closure.
-    closure->Run();
-    internal::Release_Store(once, ONCE_STATE_DONE);
-  } else {
-    // Another thread has already started executing the closure. We need to
-    // wait until it completes the initialization.
-    while (state == ONCE_STATE_EXECUTING_CLOSURE) {
-      // Note that futex() could be used here on Linux as an improvement.
-      SchedYield();
-      state = internal::Acquire_Load(once);
-    }
-  }
+void InitImplicitWeakMessageDefaultInstance() {
+  implicit_weak_message_default_instance.DefaultConstruct();
 }
 
+const ImplicitWeakMessage* ImplicitWeakMessage::default_instance() {
+  ::google::protobuf::GoogleOnceInit(&implicit_weak_message_once_init_,
+                 &InitImplicitWeakMessageDefaultInstance);
+  return &implicit_weak_message_default_instance.get();
+}
+
+}  // namespace internal
 }  // namespace protobuf
 }  // namespace google
-
-#endif  // GOOGLE_PROTOBUF_NO_THREAD_SAFETY
